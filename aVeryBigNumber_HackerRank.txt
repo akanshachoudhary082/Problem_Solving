@@ -1,0 +1,35 @@
+import java.util.*;
+
+class Solution {
+
+    /*
+     * Complete the 'aVeryBigSum' function below.
+     *
+     * The function is expected to return a LONG_INTEGER.
+     * The function accepts LONG_INTEGER_ARRAY ar as parameter.
+     */
+
+    public static long aVeryBigSum(List<Long> ar) {
+        long sum = 0;  // Initialize sum to 0
+        // Iterate over each element in the list and add it to the sum
+        for (long num : ar) {
+            sum += num;
+        }
+        return sum;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();  // Read the number of elements
+        ArrayList<Long> ar = new ArrayList<>();  // Create an ArrayList to store the elements
+        
+        // Read input array elements
+        for (int i = 0; i < n; i++) {  // Change loop counter type to int
+            ar.add(sc.nextLong());
+        }
+        
+        // Print the result by calling the method
+        System.out.println(aVeryBigSum(ar));
+        sc.close();  // Close the scanner
+    }
+}
