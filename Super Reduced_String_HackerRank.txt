@@ -1,0 +1,154 @@
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.regex.*;
+
+class Result {
+
+    /*
+     * Complete the 'superReducedString' function below.
+     *
+     * The function is expected to return a STRING.
+     * The function accepts STRING s as parameter.
+     */
+
+    public static String superReducedString(String s) {
+    // Write your code here
+
+//       char [] result = new char[s.length()];
+//       int index =0;
+//       for(int i=0;i<s.length();i++)
+      
+//       {
+//           char currentChar = s.charAt(i);
+//           if(index > 0 && result[index -1] == currentChar)
+//           {
+//               index--;
+//           }else{
+//               result[index]  = currentChar;
+//               index++;
+//           }
+//       }
+//  String reducedString = new String(result,0,index);
+//  return reducedString.isEmpty() ? "Empty String" : reducedString ;
+
+
+
+//---------------------------Second Method --------------------------
+
+StringBuilder sb = new StringBuilder();
+
+// aaabccddd
+
+for(int i=0;i<s.length();i++)  // 
+{
+    char currentChar = s.charAt(i); // 
+    
+    if(sb.length() > 0 && sb.charAt(sb.length() -1) == currentChar)
+    {
+        sb.deleteCharAt(sb.length() - 1);
+    }else{
+        sb.append(currentChar);
+    }
+
+}
+
+return sb.length() == 0 ? "Empty String " : sb.toString();
+}
+}
+public class Solution {
+    public static void main(String[] args) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+
+        String s = bufferedReader.readLine();
+
+        String result = Result.superReducedString(s);
+
+        bufferedWriter.write(result);
+        bufferedWriter.newLine();
+
+        bufferedReader.close();
+        bufferedWriter.close();
+    }
+}
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.regex.*;
+
+class Result {
+
+    /*
+     * Complete the 'superReducedString' function below.
+     *
+     * The function is expected to return a STRING.
+     * The function accepts STRING s as parameter.
+     */
+
+    public static String superReducedString(String s) {
+    // Write your code here
+
+//       char [] result = new char[s.length()];
+//       int index =0;
+//       for(int i=0;i<s.length();i++)
+      
+//       {
+//           char currentChar = s.charAt(i);
+//           if(index > 0 && result[index -1] == currentChar)
+//           {
+//               index--;
+//           }else{
+//               result[index]  = currentChar;
+//               index++;
+//           }
+//       }
+//  String reducedString = new String(result,0,index);
+//  return reducedString.isEmpty() ? "Empty String" : reducedString ;
+
+
+
+//---------------------------Second Method --------------------------
+
+StringBuilder sb = new StringBuilder();
+
+// aaabccddd
+
+for(int i=0;i<s.length();i++)  // 
+{
+    char currentChar = s.charAt(i); // 
+    
+    if(sb.length() > 0 && sb.charAt(sb.length() -1) == currentChar)
+    {
+        sb.deleteCharAt(sb.length() - 1);
+    }else{
+        sb.append(currentChar);
+    }
+
+}
+
+return sb.length() == 0 ? "Empty String " : sb.toString();
+}
+}
+public class Solution {
+    public static void main(String[] args) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+
+        String s = bufferedReader.readLine();
+
+        String result = Result.superReducedString(s);
+
+        bufferedWriter.write(result);
+        bufferedWriter.newLine();
+
+        bufferedReader.close();
+        bufferedWriter.close();
+    }
+}
