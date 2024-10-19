@@ -1,0 +1,70 @@
+import java.io.*;
+import java.util.*;
+
+class Result {
+
+    /*
+     * Complete the 'isValid' function below.
+     *
+     * The function is expected to return a STRING.
+     * The function accepts STRING s as parameter.
+     */
+
+    public static String isValid(String s) {
+        // Map to store the frequency of each character
+        Map<Character, Integer> charCountMap = new HashMap<>();
+        
+        // Count the frequency of each character
+        for (char c : s.toCharArray()) {
+            charCountMap.put(c, charCountMap.getOrDefault(c, 0) + 1);
+        }
+        
+        // Map to store the frequency of frequencies
+        Map<Integer, Integer> frequencyCountMap = new HashMap<>();
+        
+        for (int freq : charCountMap.values()) {
+            frequencyCountMap.put(freq, frequencyCountMap.getOrDefault(freq, 0) + 1);
+        }
+        
+        // If there's only one frequency, the string is valid
+        if (frequencyCountMap.size() == 1) {
+            return "YES";
+        }
+        
+        // If there are two frequencies, check the conditions
+        if (frequencyCountMap.size() == 2) {
+            // Get the two frequencies and their counts
+            List<Integer> frequencies = new ArrayList<>(frequencyCountMap.keySet());
+            int freq1 = frequencies.get(0);
+            int freq2 = frequencies.get(1);
+            int count1 = frequencyCountMap.get(freq1);
+            int count2 = frequencyCountMap.get(freq2);
+            
+            // Check the conditions for validity
+            if ((count1 == 1 && (freq1 == 1 || freq1 == freq2 + 1)) ||
+                (count2 == 1 && (freq2 == 1 || freq2 == freq1 + 1))) {
+                return "YES";
+            }
+        }
+        
+        return "NO"; // Not valid
+    }
+
+}
+
+public class Solution {
+    public static void main(String[] args) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+
+        String s = bufferedReader.readLine();
+
+        String result = Result.isValid(s);
+
+        bufferedWriter.write(result);
+        bufferedWriter.newLine();
+
+        bufferedReader.close();
+        bufferedWriter.close();
+    }
+}
