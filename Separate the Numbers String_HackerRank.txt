@@ -1,0 +1,79 @@
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.function.*;
+import java.util.regex.*;
+import java.util.stream.*;
+import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toList;
+
+class Result {
+
+    /*
+     * Complete the 'separateNumbers' function below.
+     *
+     * The function accepts STRING s as parameter.
+     */
+
+    public static void separateNumbers(String s) {
+    // Write your code her
+       
+        // If string length is less than 2, it's not beautiful
+        if (s.length() < 2) {
+            System.out.println("NO");
+            return;
+        }
+
+        // Try different lengths for the first number (1 to half the string length)
+        for (int i = 1; i <= s.length() / 2; i++) {
+            String firstNumberStr = s.substring(0, i);
+
+            // Skip if the number starts with '0'
+            if (firstNumberStr.startsWith("0")) {
+                continue;
+            }
+
+            long firstNumber = Long.parseLong(firstNumberStr);
+            StringBuilder sequence = new StringBuilder(firstNumberStr);
+
+            // Build the sequence by adding consecutive numbers
+            long nextNumber = firstNumber;
+            while (sequence.length() < s.length()) {
+                nextNumber++;
+                sequence.append(nextNumber);
+            }
+
+            // If the sequence matches the input string, print the result
+            if (sequence.toString().equals(s)) {
+                System.out.println("YES " + firstNumber);
+                return;
+            }
+        }
+
+        // If no valid sequence is found, print "NO"
+        System.out.println("NO");
+    }
+}
+
+public class Solution {
+    public static void main(String[] args) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+
+        int q = Integer.parseInt(bufferedReader.readLine().trim());
+
+        IntStream.range(0, q).forEach(qItr -> {
+            try {
+                String s = bufferedReader.readLine();
+
+                Result.separateNumbers(s);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+
+        bufferedReader.close();
+    }
+}
