@@ -1,0 +1,53 @@
+import java.io.*;
+import java.util.*;
+import java.util.stream.*;
+
+class Result {
+    /*
+     * Complete the 'meanderingArray' function below.
+     * The function is expected to return an INTEGER_ARRAY.
+     * The function accepts INTEGER_ARRAY unsorted as parameter.
+     */
+    public static List<Integer> meanderingArray(List<Integer> unsorted) {
+        // Sort the array
+        Collections.sort(unsorted);
+        
+        List<Integer> result = new ArrayList<>();
+        int left = 0; // Pointer for the smallest elements
+        int right = unsorted.size() - 1; // Pointer for the largest elements
+        
+        // Alternate between largest and smallest elements
+        while (left <= right) {
+            if (right >= left) {
+                result.add(unsorted.get(right--)); // Add largest
+            }
+            if (left <= right) {
+                result.add(unsorted.get(left++)); // Add smallest
+            }
+        }
+        
+        return result;
+    }
+}
+
+public class Solution {
+    public static void main(String[] args) throws IOException {
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        
+        int unsortedCount = Integer.parseInt(bufferedReader.readLine().trim());
+        List<Integer> unsorted = IntStream.range(0, unsortedCount).mapToObj(i -> {
+            try {
+                return Integer.parseInt(bufferedReader.readLine().trim());
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        }).collect(Collectors.toList());
+        
+        List<Integer> result = Result.meanderingArray(unsorted);
+        
+        bufferedWriter.write(result.stream().map(Object::toString).collect(Collectors.joining("\n")) + "\n");
+        bufferedReader.close();
+        bufferedWriter.close();
+    }
+}
