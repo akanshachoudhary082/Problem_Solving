@@ -1,0 +1,21 @@
+int n = grid.size();
+        List<String> result = new ArrayList<>(grid); // Copy the grid to modify it
+
+        for (int i = 1; i < n - 1; i++) { // Skip first and last rows
+            char[] row = result.get(i).toCharArray(); // Get the current row as a char array
+            for (int j = 1; j < row.length - 1; j++) { // Skip first and last columns
+                char current = grid.get(i).charAt(j);
+
+                // Check if current cell is greater than its neighbors
+                if (current > grid.get(i - 1).charAt(j) && // Top
+                    current > grid.get(i + 1).charAt(j) && // Bottom
+                    current > grid.get(i).charAt(j - 1) && // Left
+                    current > grid.get(i).charAt(j + 1)) { // Right
+                    row[j] = 'X'; // Mark as cavity
+                }
+            }
+            result.set(i, new String(row)); // Update the row in the result
+        }
+
+        return result; // Return the updated grid
+    }
